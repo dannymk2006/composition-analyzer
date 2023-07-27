@@ -8,6 +8,8 @@ A composition analyzer that ... well, analyse a composition for you
 
 ## Getting Started
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Build Setup
 
 * [Windows](#windows)
@@ -16,7 +18,7 @@ A composition analyzer that ... well, analyse a composition for you
 
 * Install [Free Pascal Compiler](https://www.freepascal.org/down/i386/win32.html)
 
-
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Building
 Composition Analyzer is built with [Pascal](https://en.wikipedia.org/wiki/Pascal_(programming_language)), based on ALGOL. Composition Analyzer will use [Free Pascal Compiler](https://www.freepascal.org/) as the Pascal compiler.
@@ -28,6 +30,7 @@ fpc [[main.pas](https://github.com/dannymk2006/composition-analyzer/blob/main/ma
 
 The executable should appear at the same folder where the [main.pas](https://github.com/dannymk2006/composition-analyzer/blob/main/main.pas) belongs to.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Results
 
