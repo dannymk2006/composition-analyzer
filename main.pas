@@ -1,4 +1,4 @@
-program test;
+program main;
 uses crt;
 var
    charList : array['A'..'Z'] of integer;
