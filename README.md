@@ -23,7 +23,7 @@ The latest build for Windows can be found on [releases](https://github.com/danny
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Building
-Composition Analyzer is built with [Pascal](https://en.wikipedia.org/wiki/Pascal_(programming_language)), based on ALGOL. Composition Analyzer will use [Free Pascal Compiler](https://www.freepascal.org/) as the Pascal compiler.
+Composition Analyzer is built with [Pascal](https://en.wikipedia.org/wiki/Pascal_(programming_language)), based on [ALGOL](https://en.wikipedia.org/wiki/ALGOL). Composition Analyzer will use [Free Pascal Compiler](https://www.freepascal.org/) as the Pascal compiler.
 
 To Build the executable (.exe):
 ```
