@@ -24,7 +24,7 @@ The latest build for Windows can be found on [releases](https://github.com/danny
 
 ### Windows
 
-* Install [Free Pascal Compiler](https://sourceforge.net/projects/freepascal/files/Win32/3.2.2/fpc-3.2.2.i386-win32.exe/download)
+* Install [Free Pascal Compiler](https://sourceforge.net/projects/freepascal/files/Win32/3.2.2/fpc-3.2.2.win32.and.win64.exe/download)
 
 ### Other OS
 

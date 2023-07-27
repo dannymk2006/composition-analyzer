@@ -81,9 +81,9 @@ begin
       read(inputText, cache);
       if isChar(cache) then
          if (cache <= 'Z') then
-            charList[cache] := charList[cache] + 1
+              inc(charList[cache], 1)
          else
-            charList[upper(cache)] := charList[upper(cache)] + 1;
+              inc(charList[upper(cache)], 1)
    until eof(inputText);
 end;
 
@@ -93,12 +93,13 @@ var
    cacheChar : char;
 begin
    reset(inputText);
+   cacheString := '  ';
    repeat
       read(inputText, cacheChar);
       cacheString[1] := cacheString[2];
       cacheString[2] := cacheChar;
       if isPun(cacheString[2]) and isChar(cacheString[1]) then
-         totalWord := totalWord + 1;
+           inc(totalWord, 1);
    until eof(inputText);
 end;
 
@@ -113,7 +114,7 @@ begin
    begin
       write(i,': ',charList[i]:5);
       write(' ');
-      j := j + 1;
+      inc(j, 1);
       if (j mod 4 = 0) then
          writeln;
    end;
