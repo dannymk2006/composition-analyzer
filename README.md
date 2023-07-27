@@ -26,6 +26,10 @@ The latest build for Windows can be found on [releases](https://github.com/danny
 
 * Install [Free Pascal Compiler](https://sourceforge.net/projects/freepascal/files/Win32/3.2.2/fpc-3.2.2.i386-win32.exe/download)
 
+### Other OS
+
+* For other OS, please refer to [FPC's documents](https://www.freepascal.org/docs-html/user/userse5.html#QQ2-14-23)
+
 ## Building
 Composition Analyzer is built with [Pascal](https://en.wikipedia.org/wiki/Pascal_(programming_language)), based on [ALGOL](https://en.wikipedia.org/wiki/ALGOL). Composition Analyzer will use [Free Pascal Compiler](https://www.freepascal.org/) as the Pascal compiler.
 
