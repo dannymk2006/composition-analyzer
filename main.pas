@@ -1,10 +1,15 @@
 program main;
-uses crt;
+uses crt,Strings,Windows,CommDlg,CommCtrl;
+
+Type
+  TFileName = Array[0..Max_Path] Of Char;
+
 var
    charList : array['A'..'Z'] of integer;
    totalWord : integer;
    inputText : text;
-
+   hWindow : Hwnd;
+   
 procedure init;
 var
    i : char;
@@ -14,27 +19,51 @@ begin
    totalWord := 0;
 end;
 
+
+Function SelectFile(Var FName:TFileName; Open:Boolean): Boolean;
+Const
+   Filter: PChar = 'Text files (*.txt)'#0'*.txt'#0'All files (*.*)'#0'*.*'#0;
+   Ext: PChar = 'txt';
+
+Var
+   NameRec: OpenFileName;
+Begin
+   FillChar(NameRec,SizeOf(NameRec),0);
+   FName[0] := #0;
+   With NameRec Do
+      Begin
+         LStructSize := SizeOf(NameRec);
+         HWndOwner := HWindow;
+         LpStrFilter := Filter;
+         LpStrFile := @FName;
+         NMaxFile := Max_Path;
+         Flags := OFN_Explorer Or OFN_HideReadOnly;
+         If Open Then
+            Begin
+               Flags := Flags Or OFN_FileMustExist;
+            End;
+         LpStrDefExt := Ext;
+      End;
+   If Open Then
+      SelectFile := GetOpenFileName(@NameRec)
+   Else
+      SelectFile := GetSaveFileName(@NameRec);
+End;
+
+
 procedure loadFile;
 var
-   path : string[255];
-   error : integer;
+   Fname : TFileName;
 begin
-   write('text path: ');
-   repeat
-   readln(path);
-   assign(inputText, path);
-   {$i-}
-   reset(inputText);
-   {$i+}
-   error := ioresult;
-   if error <> 0 then
-      begin
-         writeln('Path not valid!');
-         write('Enter again: ');
-      end;
-   until error = 0;
+      if SelectFile(Fname, True) then
+         assign(inputText, @FName)
+      else
+         begin
+            MessageBox(0,'File not assigned',Nil,MB_OK);
+            halt(1);
+         end;
+         
 end;
-
 
 
 function isASCII(input : char):boolean;
