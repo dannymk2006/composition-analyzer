@@ -1,4 +1,4 @@
-<a name="readme-top"></a>
+<! <a name="readme-top"></a> >
 
 # composition-analyzer
 
@@ -12,13 +12,11 @@
 
 A composition analyzer that ... well, analyse a composition for you
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<! <p align="right">(<a href="#readme-top">back to top</a>)</p> >
 
 ## Getting Started
 
 The latest build for Windows can be found on [releases](https://github.com/dannymk2006/composition-analyzer/releases/latest).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Build Setup
 
@@ -26,9 +24,7 @@ The latest build for Windows can be found on [releases](https://github.com/danny
 
 ### Windows
 
-* Install [Free Pascal Compiler](https://www.freepascal.org/down/i386/win32.html)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+* Install [Free Pascal Compiler](https://sourceforge.net/projects/freepascal/files/Win32/3.2.2/fpc-3.2.2.i386-win32.exe/download)
 
 ## Building
 Composition Analyzer is built with [Pascal](https://en.wikipedia.org/wiki/Pascal_(programming_language)), based on [ALGOL](https://en.wikipedia.org/wiki/ALGOL). Composition Analyzer will use [Free Pascal Compiler](https://www.freepascal.org/) as the Pascal compiler.
@@ -40,16 +36,12 @@ fpc [main.pas path]
 
 The executable should appear at the same folder where the [main.pas](https://github.com/dannymk2006/composition-analyzer/blob/main/main.pas?raw=1) belongs to.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Results
 
 - Total word count
 - Total paragraph count
 - frequency of letters
 - frequency of a specific word (to be implemented)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contact me
 DannyMK - me@danny.mk
