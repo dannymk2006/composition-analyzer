@@ -18,4 +18,5 @@ A composition analyzer that ... well, analyse a composition for you
 
 ## Contact me
 DannyMK - me@danny.mk
+
 Project Link: [https://github.com/dannymk/composition-analyzer](https://github.com/dannymk/composition-analyzer)
