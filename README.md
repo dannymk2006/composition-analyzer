@@ -2,6 +2,14 @@
 
 # composition-analyzer
 
+<h1 align="center">
+  <br>
+  <a href="https://github.com/dannymk2006/composition-analyzer/"><img src="https://i.imgur.com/8MYz7fi.png" alt="Composition-Analyzer" width="150"></a>
+  <br>
+  <b>Composition-Analyzer</b>
+  <br>
+</h1>
+
 A composition analyzer that ... well, analyse a composition for you
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
