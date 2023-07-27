@@ -25,10 +25,10 @@ Composition Analyzer is built with [Pascal](https://en.wikipedia.org/wiki/Pascal
 
 To Build the executable (.exe):
 ```
-fpc [[main.pas](https://github.com/dannymk2006/composition-analyzer/blob/main/main.pas) path]
+fpc [main.pas path]
 ```
 
-The executable should appear at the same folder where the [main.pas](https://github.com/dannymk2006/composition-analyzer/blob/main/main.pas) belongs to.
+The executable should appear at the same folder where the [main.pas](https://github.com/dannymk2006/composition-analyzer/blob/main/main.pas?raw=1) belongs to.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
