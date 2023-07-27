@@ -1,4 +1,4 @@
-<! <a name="readme-top"></a> >
+<!-- <a name="readme-top"></a> -->
 
 # composition-analyzer
 
@@ -12,7 +12,7 @@
 
 A composition analyzer that ... well, analyse a composition for you
 
-<! <p align="right">(<a href="#readme-top">back to top</a>)</p> >
+<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 ## Getting Started
 
