@@ -8,7 +8,7 @@ A composition analyzer that ... well, analyse a composition for you
 
 ## Getting Started
 
-[Get the latest releases](https://github.com/dannymk2006/composition-analyzer/releases/latest)
+The latest build for Windows can be found on [releases](https://github.com/dannymk2006/composition-analyzer/releases/latest).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
