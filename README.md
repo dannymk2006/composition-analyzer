@@ -4,7 +4,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://github.com/dannymk2006/composition-analyzer/"><img src="https://i.imgur.com/8MYz7fi.png" alt="Composition-Analyzer" width="250"></a>
+  <a href="https://github.com/dannymk2006/composition-analyzer/"><img src="https://i.imgur.com/PDG394z.png" alt="Composition-Analyzer" width="250"></a>
   <br>
   <b>Composition-Analyzer</b>
   <br>
@@ -34,25 +34,25 @@ Follow the guideline if you wants to build it by yourself.
 Composition Analyzer is built with [Pascal](https://en.wikipedia.org/wiki/Pascal_(programming_language)), based on [ALGOL](https://en.wikipedia.org/wiki/ALGOL). Composition Analyzer will use [Free Pascal Compiler](https://www.freepascal.org/) as the Pascal compiler.
 
 To Build the executable (.exe):
-```
+```sh
 fpc [main.pas path]
 ```
 
 or
 
-```
-// add "-FE[Path] -FU[Path]" if you want to output the executable to a specific path. No spaces between -FE and path
+```sh
 fpc [main.pas path] -FE[output path] -FU[output path]
 ```
+Add "-FE[Path] -FU[Path]" if you want to output the executable to a specific path. No spaces between -FE(-FU) and path
 
 The executable should appear at the same folder where the [main.pas](https://github.com/dannymk2006/composition-analyzer/blob/main/main.pas?raw=1) belongs to.
 
 ## Results
 
-- Total word count
-- Total paragraph count (to be implemented)
-- frequency of letters
-- frequency of a specific word (to be implemented)
+- [x] Total word count
+- [x] frequency of letters
+- [ ] Total paragraph count (to be implemented)
+- [ ] frequency of a specific word (to be implemented)
 
 ## Contact me
 DannyMK - me@danny.mk
