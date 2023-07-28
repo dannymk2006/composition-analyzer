@@ -36,6 +36,11 @@ Composition Analyzer is built with [Pascal](https://en.wikipedia.org/wiki/Pascal
 To Build the executable (.exe):
 ```
 fpc [main.pas path]
+```
+
+or
+
+```
 // add "-FE[Path] -FU[Path]" if you want to output the executable to a specific path. No spaces between -FE and path
 fpc [main.pas path] -FE[output path] -FU[output path]
 ```
