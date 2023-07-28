@@ -1,5 +1,5 @@
 program main;
-uses Strings,Windows,CommDlg,CommCtrl;
+uses Strings,Windows,CommDlg,CommCtrl,video;
 
 Type
    tFileName = Array[0..Max_Path] Of Char;
@@ -21,31 +21,36 @@ end;
 
 procedure drawLogo;
 begin
-   writeln('    ▄▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄▄');
-   writeln('  ▄▀                                         ▀▄');
-   writeln('▄▀                                             ▀▄');
-   writeln('█                                               █');
-   writeln('█              ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄             █');
-   writeln('█            ██   █                ██           █');
-   writeln('█            █    █   █▀▀▀▀▀▀▀▀▀▀█  █           █');
-   writeln('█            █    █   █▄▄▄▄▄▄▄▄▄▄█  █           █');
-   writeln('█            █    █   █          █  █           █');
-   writeln('█            █    █   █▀▀▀▀▀▀▀▀▀▀█  █           █');
-   writeln('█            █    █   █▄▄▄▄▄▄▄▄▄▄█  █           █');
-   writeln('█            █    █                 █           █');
-   writeln('█            █    █                 █           █');
-   writeln('█            █    █                 █           █');
-   writeln('█            █    █                 ██          █');
-   writeln('█            █    █           █████████▄██▄     █');
-   writeln('█            █    █           ██████▀█████▀     █');
-   writeln('█            █    █         ██████    ▀████▄▄   █');
-   writeln('█            █    █         █████▄     ██████   █');
-   writeln('█            ██   █           ████▄▄ ▄████▀     █');
-   writeln('█              ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█████████████     █');
-   writeln('█                             ▀▀▀ ▀███▀ ▀▀      █');
-   writeln('▀▄                                 ▀▀▀         ▄▀');
-   writeln('  ▀▄                                         ▄▀');
-   writeln('    ▀▀▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▀▀');
+   writeln('                       ▄▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄▄');
+   writeln('                     ▄▀                                         ▀▄');
+   writeln('                   ▄▀                                             ▀▄');
+   writeln('                   █              ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄             █');
+   writeln('                   █            ██   █                ██           █');
+   writeln('                   █            █    █   █▀▀▀▀▀▀▀▀▀▀█  █           █');
+   writeln('                   █            █    █   █▄▄▄▄▄▄▄▄▄▄█  █           █');
+   writeln('                   █            █    █   █          █  █           █');
+   writeln('                   █            █    █   █▀▀▀▀▀▀▀▀▀▀█  █           █');
+   writeln('                   █            █    █   █▄▄▄▄▄▄▄▄▄▄█  █           █');
+   writeln('                   █            █    █                 █           █');
+   writeln('                   █            █    █                 █           █');
+   writeln('                   █            █    █                 █           █');
+   writeln('                   █            █    █                 ██          █');
+   writeln('                   █            █    █           █████████▄██▄     █');
+   writeln('                   █            █    █           ██████▀█████▀     █');
+   writeln('                   █            █    █         ██████    ▀████▄▄   █');
+   writeln('                   █            █    █         █████▄     ██████   █');
+   writeln('                   █            ██   █           ████▄▄ ▄████▀     █');
+   writeln('                   █              ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█████████████     █');
+   writeln('                   █                             ▀▀▀ ▀███▀ ▀▀      █');
+   writeln('                   ▀▄                                 ▀▀▀         ▄▀');
+   writeln('                     ▀▄                                         ▄▀');
+   writeln('                       ▀▀▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▀▀');
+   writeln;
+   writeln('▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄');
+   writeln('█▀▄▀█▀▄▄▀█ ▄▀▄ █▀▄▄▀█▀▄▄▀█ ▄▄██▄██▄ ▄██▄██▀▄▄▀█ ▄▄▀████ ▄▄▀█ ▄▄▀█ ▄▄▀█ ██ ██ █▄▄ █ ▄▄█ ▄▄▀');
+   writeln('█ █▀█ ██ █ █▄█ █ ▀▀ █ ██ █▄▄▀██ ▄██ ███ ▄█ ██ █ ██ █▄▄█ ▀▀ █ ██ █ ▀▀ █ ██ ▀▀ █▀▄██ ▄▄█ ▀▀▄');
+   writeln('██▄███▄▄██▄███▄█ █████▄▄██▄▄▄█▄▄▄██▄██▄▄▄██▄▄██▄██▄████▄██▄█▄██▄█▄██▄█▄▄█▀▀▀▄█▄▄▄█▄▄▄█▄█▄▄');
+   write(  '▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀');
 end;
 
 
@@ -88,7 +93,7 @@ begin
          assign(inputText, @fName)
       else
          begin
-            messageBox(0,'File not assigned',Nil,MB_OK);
+            messageBox(0,'File not assigned',Nil,MB_OK or MB_ICONERROR);
             halt(1);
          end;
          
@@ -173,6 +178,7 @@ var
    i : char;
    j : integer;
 begin
+   ClearScreen;
    j := 0;
    for i := 'A' to 'Z' do
    begin
