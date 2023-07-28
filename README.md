@@ -4,7 +4,7 @@
 
 <h1 align="center">
   <br>
-  <a href="https://github.com/dannymk2006/composition-analyzer/"><img src="https://i.imgur.com/8MYz7fi.png" alt="Composition-Analyzer" width="150"></a>
+  <a href="https://github.com/dannymk2006/composition-analyzer/"><img src="https://i.imgur.com/8MYz7fi.png" alt="Composition-Analyzer" width="250"></a>
   <br>
   <b>Composition-Analyzer</b>
   <br>
