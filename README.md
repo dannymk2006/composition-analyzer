@@ -50,9 +50,9 @@ The executable should appear at the same folder where the [main.pas](https://git
 ## Results
 
 - [x] Total word count
-- [x] frequency of letters
+- [x] Frequency of letters
 - [ ] Total paragraph count
-- [ ] frequency of a specific word
+- [ ] Frequency of a specific word
 
 ## Contact me
 DannyMK - me@danny.mk
