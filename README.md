@@ -51,8 +51,8 @@ The executable should appear at the same folder where the [main.pas](https://git
 
 - [x] Total word count
 - [x] frequency of letters
-- [ ] Total paragraph count (to be implemented)
-- [ ] frequency of a specific word (to be implemented)
+- [ ] Total paragraph count
+- [ ] frequency of a specific word
 
 ## Contact me
 DannyMK - me@danny.mk
