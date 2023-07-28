@@ -1,14 +1,14 @@
 program main;
-uses crt,Strings,Windows,CommDlg,CommCtrl;
+uses Strings,Windows,CommDlg,CommCtrl;
 
 Type
-  TFileName = Array[0..Max_Path] Of Char;
+   tFileName = Array[0..Max_Path] Of Char;
 
 var
    charList : array['A'..'Z'] of integer;
    totalWord : integer;
    inputText : text;
-   hWindow : Hwnd;
+   hWindow : hwnd;
    
 procedure init;
 var
@@ -20,46 +20,46 @@ begin
 end;
 
 
-Function SelectFile(Var FName:TFileName; Open:Boolean): Boolean;
+function selectFile(var fName:tFileName; Open:boolean): boolean;
 Const
-   Filter: PChar = 'Text files (*.txt)'#0'*.txt'#0'All files (*.*)'#0'*.*'#0;
-   Ext: PChar = 'txt';
+   filter: PChar = 'Text files (*.txt)'#0'*.txt'#0'All files (*.*)'#0'*.*'#0;
+   ext: PChar = 'txt';
 
 Var
-   NameRec: OpenFileName;
+   nameRec: openFileName;
 Begin
-   FillChar(NameRec,SizeOf(NameRec),0);
-   FName[0] := #0;
-   With NameRec Do
-      Begin
-         LStructSize := SizeOf(NameRec);
-         HWndOwner := HWindow;
-         LpStrFilter := Filter;
+   fillChar(nameRec,sizeOf(NameRec),0);
+   fName[0] := #0;
+   with nameRec do
+      begin
+         LStructSize := sizeOf(nameRec);
+         HWndOwner := hWindow;
+         LpStrFilter := filter;
          LpStrFile := @FName;
          NMaxFile := Max_Path;
          Flags := OFN_Explorer Or OFN_HideReadOnly;
-         If Open Then
-            Begin
+         if open then
+            begin
                Flags := Flags Or OFN_FileMustExist;
-            End;
-         LpStrDefExt := Ext;
-      End;
-   If Open Then
-      SelectFile := GetOpenFileName(@NameRec)
-   Else
-      SelectFile := GetSaveFileName(@NameRec);
-End;
+            end;
+         LpStrDefExt := ext;
+      end;
+   if open then
+      selectFile := getOpenFileName(@nameRec)
+   else
+      selectFile := getSaveFileName(@nameRec);
+end;
 
 
 procedure loadFile;
 var
-   Fname : TFileName;
+   fname : tFileName;
 begin
-      if SelectFile(Fname, True) then
-         assign(inputText, @FName)
+      if selectFile(fname, True) then
+         assign(inputText, @fName)
       else
          begin
-            MessageBox(0,'File not assigned',Nil,MB_OK);
+            messageBox(0,'File not assigned',Nil,MB_OK);
             halt(1);
          end;
          
@@ -137,7 +137,6 @@ var
    i : char;
    j : integer;
 begin
-   Clrscr;
    j := 0;
    for i := 'A' to 'Z' do
    begin
@@ -151,6 +150,7 @@ begin
    writeln('=======================================================');
    writeln('Total Word: ', totalWord);
 end; 
+
 
 begin
 init;
