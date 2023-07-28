@@ -6,7 +6,7 @@ Type
 
 var
    charList : array['A'..'Z'] of integer;
-   totalWord : integer;
+   totalWord, totalParagraph : integer;
    inputText : text;
    hWindow : hwnd;
    
@@ -17,6 +17,35 @@ begin
    for i := 'A' to 'Z' do
       charList[i] := 0;
    totalWord := 0;
+end;
+
+procedure drawLogo;
+begin
+   writeln('    ▄▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄▄');
+   writeln('  ▄▀                                         ▀▄');
+   writeln('▄▀                                             ▀▄');
+   writeln('█                                               █');
+   writeln('█              ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄             █');
+   writeln('█            ██   █                ██           █');
+   writeln('█            █    █   █▀▀▀▀▀▀▀▀▀▀█  █           █');
+   writeln('█            █    █   █▄▄▄▄▄▄▄▄▄▄█  █           █');
+   writeln('█            █    █   █          █  █           █');
+   writeln('█            █    █   █▀▀▀▀▀▀▀▀▀▀█  █           █');
+   writeln('█            █    █   █▄▄▄▄▄▄▄▄▄▄█  █           █');
+   writeln('█            █    █                 █           █');
+   writeln('█            █    █                 █           █');
+   writeln('█            █    █                 █           █');
+   writeln('█            █    █                 ██          █');
+   writeln('█            █    █           █████████▄██▄     █');
+   writeln('█            █    █           ██████▀█████▀     █');
+   writeln('█            █    █         ██████    ▀████▄▄   █');
+   writeln('█            █    █         █████▄     ██████   █');
+   writeln('█            ██   █           ████▄▄ ▄████▀     █');
+   writeln('█              ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█████████████     █');
+   writeln('█                             ▀▀▀ ▀███▀ ▀▀      █');
+   writeln('▀▄                                 ▀▀▀         ▄▀');
+   writeln('  ▀▄                                         ▄▀');
+   writeln('    ▀▀▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▀▀');
 end;
 
 
@@ -132,6 +161,13 @@ begin
    until eof(inputText);
 end;
 
+procedure paragraphCount;
+var
+   cacheString : string[2];
+begin
+  
+end;
+
 procedure printResult;
 var
    i : char;
@@ -154,6 +190,7 @@ end;
 
 begin
 init;
+drawLogo;
 loadFile;
 letterCount;
 wordCount;
