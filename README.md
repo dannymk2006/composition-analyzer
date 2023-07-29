@@ -10,7 +10,7 @@
   <br>
 </h1>
 
-A composition analyzer that ... well, analyse a composition for you
+A composition analyzer that ... well, analyze a composition for you
 
 <!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
