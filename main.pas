@@ -14,9 +14,11 @@ procedure init;
 var
    i : char;
 begin
+   InitVideo;
    for i := 'A' to 'Z' do
       charList[i] := 0;
    totalWord := 0;
+   totalParagraph := 0;
 end;
 
 procedure drawLogo;
@@ -100,15 +102,15 @@ begin
 end;
 
 
-function isASCII(input : char):boolean;
+function isVisable(input : char):boolean;
 var
    ordValue : integer;
 begin
    ordValue := ord(input);
    if (ordValue >= 32) and (ordValue <= 126) then
-      isASCII := true
+      isVisable := true
    else
-      isASCII := false;
+      isVisable := false;
 end;
 
 function isChar(input : char):boolean;
@@ -122,7 +124,7 @@ end;
 
 function isPun(input : char):boolean;
 begin
-   if (isASCII(input)) and (not isChar(input)) then
+   if (isVisable(input)) and (not isChar(input)) then
       isPun := true
    else
       isPun := false;
@@ -168,18 +170,29 @@ end;
 
 procedure paragraphCount;
 var
-   cacheString : string[2];
+   cacheString : string[3];
+   cacheChar : char;
 begin
-  
+   cacheString := '  ';
+   reset(inputText);
+   repeat
+      read(inputText, cacheChar);
+      cacheString[1] := cacheString[2];
+      cacheString[2] := cacheChar;
+      if (cacheString[2] = chr(10)) and isVisable(cacheString[1]) then
+            inc(totalParagraph, 1);
+   until eof(inputText);
 end;
+
 
 procedure printResult;
 var
    i : char;
    j : integer;
 begin
-   ClearScreen;
+   UpdateScreen(true);
    j := 0;
+   writeln;
    for i := 'A' to 'Z' do
    begin
       write(i,': ',charList[i]:5);
@@ -191,6 +204,7 @@ begin
    writeln;
    writeln('=======================================================');
    writeln('Total Word: ', totalWord);
+   writeln('Total Paragraph: ', totalParagraph);
 end; 
 
 
