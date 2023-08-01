@@ -3,7 +3,6 @@ uses Strings,Windows,CommDlg,CommCtrl;
 
 Type
    tFileName = Array[0..Max_Path] Of Char;
-
 var
    charList : array['A'..'Z'] of integer;
    totalWord, totalParagraph : integer;
@@ -77,6 +76,16 @@ begin
       isVisable := false;
 end;
 
+function isChar2(input : char):boolean;
+begin
+   if ((input >= 'A') and (input <= 'Z')) or
+   ((input >= 'a') and (input <= 'z')) or
+   ((input >= '0') and (input <= '9')) then
+      isChar2 := true
+   else
+      isChar2 := false;
+end;
+
 function isChar(input : char):boolean;
 begin
    if ((input >= 'A') and (input <= 'Z')) or
@@ -85,6 +94,8 @@ begin
    else
       isChar := false;
 end;
+
+
 
 function isPun(input : char):boolean;
 begin
@@ -96,9 +107,10 @@ end;
 
 function upper(input : char):char;
 begin
-   if isChar(input) then
-      if input >= 'a' then
-         upper := chr(ord(input) - 32);
+   if ((input >= 'a') and (input <= 'z')) then
+      upper := chr(ord(input) - 32)
+   else
+      upper := input;
 end;
 
 procedure letterCount;
@@ -127,8 +139,8 @@ begin
       read(inputText, cacheChar);
       cacheString[1] := cacheString[2];
       cacheString[2] := cacheChar;
-      if isPun(cacheString[2]) and isChar(cacheString[1]) then
-           inc(totalWord, 1);
+      if isPun(cacheString[2]) and isChar2(cacheString[1]) then
+         inc(totalWord, 1);
    until eof(inputText);
 end;
 
@@ -144,6 +156,37 @@ begin
    until eof(inputText);
 end;
 
+procedure apostropheFix;
+var
+   cacheString : string[2];
+   cacheChar : char;
+begin
+   reset(inputText);
+   cacheString := '  ';
+   repeat
+      read(inputText, cacheChar);
+      cacheString[1] := cacheString[2];
+      cacheString[2] := cacheChar;
+      if (cacheString[1] = chr(39)) and isChar2(cacheString[2]) then
+         dec(totalWord, 1);
+   until eof(inputText);
+end;
+
+procedure hyphenFix;
+var
+   cacheString : string[2];
+   cacheChar : char;
+begin
+   reset(inputText);
+   cacheString := '  ';
+   repeat
+      read(inputText, cacheChar);
+      cacheString[1] := cacheString[2];
+      cacheString[2] := cacheChar;
+      if (cacheString[1] = '-') and isChar2(cacheString[2]) then
+         dec(totalWord, 1);
+   until eof(inputText);
+end;
 
 procedure printResult;
 var
@@ -172,6 +215,8 @@ init;
 loadFile;
 letterCount;
 wordCount;
+apostropheFix;
+hyphenFix;
 paragraphCount;
 printResult;
 readln
