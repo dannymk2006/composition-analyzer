@@ -1,5 +1,5 @@
 program main;
-uses Strings,Windows,CommDlg,CommCtrl,video;
+uses Strings,Windows,CommDlg,CommCtrl;
 
 Type
    tFileName = Array[0..Max_Path] Of Char;
@@ -14,47 +14,11 @@ procedure init;
 var
    i : char;
 begin
-   InitVideo;
    for i := 'A' to 'Z' do
       charList[i] := 0;
    totalWord := 0;
    totalParagraph := 0;
 end;
-
-procedure drawLogo;
-begin
-   writeln('                       ▄▄▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▄▄');
-   writeln('                     ▄▀                                         ▀▄');
-   writeln('                   ▄▀                                             ▀▄');
-   writeln('                   █              ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄             █');
-   writeln('                   █            ██   █                ██           █');
-   writeln('                   █            █    █   █▀▀▀▀▀▀▀▀▀▀█  █           █');
-   writeln('                   █            █    █   █▄▄▄▄▄▄▄▄▄▄█  █           █');
-   writeln('                   █            █    █   █          █  █           █');
-   writeln('                   █            █    █   █▀▀▀▀▀▀▀▀▀▀█  █           █');
-   writeln('                   █            █    █   █▄▄▄▄▄▄▄▄▄▄█  █           █');
-   writeln('                   █            █    █                 █           █');
-   writeln('                   █            █    █                 █           █');
-   writeln('                   █            █    █                 █           █');
-   writeln('                   █            █    █                 ██          █');
-   writeln('                   █            █    █           █████████▄██▄     █');
-   writeln('                   █            █    █           ██████▀█████▀     █');
-   writeln('                   █            █    █         ██████    ▀████▄▄   █');
-   writeln('                   █            █    █         █████▄     ██████   █');
-   writeln('                   █            ██   █           ████▄▄ ▄████▀     █');
-   writeln('                   █              ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█████████████     █');
-   writeln('                   █                             ▀▀▀ ▀███▀ ▀▀      █');
-   writeln('                   ▀▄                                 ▀▀▀         ▄▀');
-   writeln('                     ▀▄                                         ▄▀');
-   writeln('                       ▀▀▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▀▀');
-   writeln;
-   writeln('▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄');
-   writeln('█▀▄▀█▀▄▄▀█ ▄▀▄ █▀▄▄▀█▀▄▄▀█ ▄▄██▄██▄ ▄██▄██▀▄▄▀█ ▄▄▀████ ▄▄▀█ ▄▄▀█ ▄▄▀█ ██ ██ █▄▄ █ ▄▄█ ▄▄▀');
-   writeln('█ █▀█ ██ █ █▄█ █ ▀▀ █ ██ █▄▄▀██ ▄██ ███ ▄█ ██ █ ██ █▄▄█ ▀▀ █ ██ █ ▀▀ █ ██ ▀▀ █▀▄██ ▄▄█ ▀▀▄');
-   writeln('██▄███▄▄██▄███▄█ █████▄▄██▄▄▄█▄▄▄██▄██▄▄▄██▄▄██▄██▄████▄██▄█▄██▄█▄██▄█▄▄█▀▀▀▄█▄▄▄█▄▄▄█▄█▄▄');
-   write(  '▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀');
-end;
-
 
 function selectFile(var fName:tFileName; Open:boolean): boolean;
 Const
@@ -170,17 +134,13 @@ end;
 
 procedure paragraphCount;
 var
-   cacheString : string[3];
-   cacheChar : char;
+   cache : string[255];
 begin
-   cacheString := '  ';
    reset(inputText);
    repeat
-      read(inputText, cacheChar);
-      cacheString[1] := cacheString[2];
-      cacheString[2] := cacheChar;
-      if (cacheString[2] = chr(10)) and isVisable(cacheString[1]) then
-            inc(totalParagraph, 1);
+      readln(inputText, cache);
+      if cache <> '' then
+         inc(totalParagraph, 1);
    until eof(inputText);
 end;
 
@@ -190,7 +150,6 @@ var
    i : char;
    j : integer;
 begin
-   UpdateScreen(true);
    j := 0;
    writeln;
    for i := 'A' to 'Z' do
@@ -210,10 +169,10 @@ end;
 
 begin
 init;
-drawLogo;
 loadFile;
 letterCount;
 wordCount;
+paragraphCount;
 printResult;
 readln
 end.
