@@ -1,5 +1,7 @@
 program main;
-uses Strings,Windows,CommDlg,CommCtrl;
+uses Windows,CommDlg,CommCtrl;
+
+{$H+}
 
 Type
    tFileName = Array[0..Max_Path] Of Char;
@@ -53,15 +55,22 @@ end;
 procedure loadFile;
 var
    fname : tFileName;
+   emptyTest : string;
 begin
-      if selectFile(fname, True) then
-         assign(inputText, @fName)
-      else
-         begin
-            messageBox(0,'File not assigned',Nil,MB_OK or MB_ICONERROR);
-            halt(1);
-         end;
-         
+   if selectFile(fname, True) then
+      assign(inputText, @fName)
+   else
+      begin
+         messageBox(0,'File not assigned',Nil,MB_OK or MB_ICONERROR);
+         halt(1);
+      end;
+   reset(inputText);
+   read(inputText, emptyTest);
+   if emptyTest = '' then
+      begin
+         messageBox(0,'File is empty',Nil,MB_OK or MB_ICONERROR);
+         halt(1);
+      end;
 end;
 
 
@@ -188,6 +197,29 @@ begin
    until eof(inputText);
 end;
 
+function findWord(input : string):integer;
+var
+   cache : string;
+   passage : string;
+   count, expressionPos : integer;
+begin
+   reset(inputText);
+   count := 0;
+   cache := '';
+   passage := '';
+   repeat
+      readln(inputText, cache);
+      passage := concat(passage, cache);
+   until eof(inputText);
+   while pos(input, passage) <> 0 do
+   begin
+      inc(count, 1);
+      expressionPos := pos(input, passage) + length(input);
+      passage := copy(passage,expressionPos, length(passage) - expressionPos + 1);
+   end;
+   findWord := count;
+end;
+
 procedure printResult;
 var
    i : char;
@@ -207,7 +239,19 @@ begin
    writeln('=======================================================');
    writeln('Total Word: ', totalWord);
    writeln('Total Paragraph: ', totalParagraph);
-end; 
+end;
+
+procedure findSpecific;
+var
+   toFind : string;
+begin
+   repeat
+      write('Search for expression(case-sensitive) (input % to exit): ');
+      readln(toFind);
+      if (toFind <> '') and (toFind <> '%') then
+         writeln('The occurrence of expression "', toFind, '" is : ',findWord(toFind));
+   until toFind = '%';
+end;
 
 
 begin
@@ -219,5 +263,5 @@ apostropheFix;
 hyphenFix;
 paragraphCount;
 printResult;
-readln
+findSpecific;
 end.

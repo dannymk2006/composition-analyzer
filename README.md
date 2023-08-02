@@ -52,7 +52,7 @@ The executable should appear at the same folder where the [main.pas](https://git
 - [x] Total word count
 - [x] Frequency of letters
 - [x] Total paragraph count
-- [ ] Frequency of a specific word
+- [x] Frequency of a specific word
 
 ## Contact me
 DannyMK - me@danny.mk
