@@ -1,5 +1,5 @@
 program main;
-uses Windows,CommDlg,CommCtrl;
+uses Windows,CommDlg;
 
 {$H+}
 
@@ -74,54 +74,6 @@ begin
 end;
 
 
-function isVisable(input : char):boolean;
-var
-   ordValue : integer;
-begin
-   ordValue := ord(input);
-   if (ordValue >= 32) and (ordValue <= 126) then
-      isVisable := true
-   else
-      isVisable := false;
-end;
-
-function isChar2(input : char):boolean;
-begin
-   if ((input >= 'A') and (input <= 'Z')) or
-   ((input >= 'a') and (input <= 'z')) or
-   ((input >= '0') and (input <= '9')) then
-      isChar2 := true
-   else
-      isChar2 := false;
-end;
-
-function isChar(input : char):boolean;
-begin
-   if ((input >= 'A') and (input <= 'Z')) or
-   ((input >= 'a') and (input <= 'z')) then
-      isChar := true
-   else
-      isChar := false;
-end;
-
-
-
-function isPun(input : char):boolean;
-begin
-   if (isVisable(input)) and (not isChar(input)) then
-      isPun := true
-   else
-      isPun := false;
-end;
-
-function upper(input : char):char;
-begin
-   if ((input >= 'a') and (input <= 'z')) then
-      upper := chr(ord(input) - 32)
-   else
-      upper := input;
-end;
-
 procedure letterCount;
 var
    cache : char;
@@ -129,29 +81,38 @@ begin
    reset(inputText);
    repeat
       read(inputText, cache);
-      if isChar(cache) then
-         if (cache <= 'Z') then
-              inc(charList[cache], 1)
-         else
-              inc(charList[upper(cache)], 1)
+      if cache in ['A'..'Z'] then
+         inc(charList[cache]);
+      if cache in ['a'..'z'] then
+         inc(charList[upcase(cache)]);
    until eof(inputText);
 end;
 
 procedure wordCount;
 var
-   cacheString : string[2];
    cacheChar : char;
+   inWord : boolean;
 begin
+   inWord := false;
    reset(inputText);
-   cacheString := '  ';
-   repeat
+   while not eof(inputText) do
+   begin
       read(inputText, cacheChar);
-      cacheString[1] := cacheString[2];
-      cacheString[2] := cacheChar;
-      if isPun(cacheString[2]) and isChar2(cacheString[1]) then
-         inc(totalWord, 1);
-   until eof(inputText);
+      if cacheChar in ['A'..'Z', 'a'..'z', '-','0'..'9',#39] then
+      begin
+         if not inWord then
+         begin
+            inWord := true;
+            inc(totalWord);
+         end;
+      end
+      else
+      begin
+        inWord := false
+      end;
+   end;
 end;
+
 
 procedure paragraphCount;
 var
@@ -160,42 +121,11 @@ begin
    reset(inputText);
    repeat
       readln(inputText, cache);
-      if cache <> '' then
-         inc(totalParagraph, 1);
+      if (cache <> '') and (cache <> ' ') then
+         inc(totalParagraph);
    until eof(inputText);
 end;
 
-procedure apostropheFix;
-var
-   cacheString : string[2];
-   cacheChar : char;
-begin
-   reset(inputText);
-   cacheString := '  ';
-   repeat
-      read(inputText, cacheChar);
-      cacheString[1] := cacheString[2];
-      cacheString[2] := cacheChar;
-      if (cacheString[1] = chr(39)) and isChar2(cacheString[2]) then
-         dec(totalWord, 1);
-   until eof(inputText);
-end;
-
-procedure hyphenFix;
-var
-   cacheString : string[2];
-   cacheChar : char;
-begin
-   reset(inputText);
-   cacheString := '  ';
-   repeat
-      read(inputText, cacheChar);
-      cacheString[1] := cacheString[2];
-      cacheString[2] := cacheChar;
-      if (cacheString[1] = '-') and isChar2(cacheString[2]) then
-         dec(totalWord, 1);
-   until eof(inputText);
-end;
 
 function findWord(input : string):integer;
 var
@@ -213,7 +143,7 @@ begin
    until eof(inputText);
    while pos(input, passage) <> 0 do
    begin
-      inc(count, 1);
+      inc(count);
       expressionPos := pos(input, passage) + length(input);
       passage := copy(passage,expressionPos, length(passage) - expressionPos + 1);
    end;
@@ -259,8 +189,6 @@ init;
 loadFile;
 letterCount;
 wordCount;
-apostropheFix;
-hyphenFix;
 paragraphCount;
 printResult;
 findSpecific;
