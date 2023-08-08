@@ -98,7 +98,7 @@ begin
    while not eof(inputText) do
    begin
       read(inputText, cacheChar);
-      if cacheChar in ['A'..'Z', 'a'..'z', '-','0'..'9',#39] then
+      if cacheChar in ['A'..'Z', 'a'..'z', '0'..'9', '-',#39] then
       begin
          if not inWord then
          begin
