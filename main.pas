@@ -132,6 +132,7 @@ var
    cache : string;
    passage : string;
    count, expressionPos : integer;
+   pre : boolean;
 begin
    reset(inputText);
    count := 0;
@@ -143,10 +144,13 @@ begin
    until eof(inputText);
    while pos(input, passage) <> 0 do
    begin
+      if not (passage[pos(input, passage) - 1] in ['A'..'Z', 'a'..'z', '0'..'9', '-',#39]) then
+         pre := true;
       expressionPos := pos(input, passage) + length(input);
       passage := copy(passage,expressionPos, length(passage) - expressionPos);
-      if not (passage[1] in ['A'..'Z', 'a'..'z', '0'..'9', '-',#39]) then 
+      if (not (passage[1] in ['A'..'Z', 'a'..'z', '0'..'9', '-',#39])) and pre then 
          inc(count);
+      pre := false;
    end;
    findWord := count;
 end;
