@@ -143,9 +143,10 @@ begin
    until eof(inputText);
    while pos(input, passage) <> 0 do
    begin
-      inc(count);
       expressionPos := pos(input, passage) + length(input);
       passage := copy(passage,expressionPos, length(passage) - expressionPos + 1);
+      if not (passage[1] in ['A'..'Z', 'a'..'z', '0'..'9', '-',#39]) then 
+         inc(count);
    end;
    findWord := count;
 end;
