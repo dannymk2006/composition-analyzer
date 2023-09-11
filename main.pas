@@ -134,6 +134,7 @@ var
    count, expressionPos : integer;
    pre : boolean;
 begin
+   pre := false;
    reset(inputText);
    count := 0;
    cache := '';
