@@ -121,7 +121,7 @@ begin
    reset(inputText);
    repeat
       readln(inputText, cache);
-      if (cache <> '') and (cache <> ' ') then
+      if (cache[1] <> '') and (cache[1] <> ' ') then
          inc(totalParagraph);
    until eof(inputText);
 end;
@@ -144,7 +144,7 @@ begin
    while pos(input, passage) <> 0 do
    begin
       expressionPos := pos(input, passage) + length(input);
-      passage := copy(passage,expressionPos, length(passage) - expressionPos + 1);
+      passage := copy(passage,expressionPos, length(passage) - expressionPos);
       if not (passage[1] in ['A'..'Z', 'a'..'z', '0'..'9', '-',#39]) then 
          inc(count);
    end;
