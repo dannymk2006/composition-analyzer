@@ -21,43 +21,32 @@ begin
    totalParagraph := 0;
 end;
 
-function selectFile(var fName:tFileName; Open:boolean): boolean;
-Const
-   filter: PChar = 'Text files (*.txt)'#0'*.txt'#0'All files (*.*)'#0'*.*'#0;
-   ext: PChar = 'txt';
+function selectFile(var fileName: TFileName): Boolean;
+var
+  OpenFileName: TOpenFileName;
+begin
+  ZeroMemory(@OpenFileName, SizeOf(TOpenFileName));
 
-Var
-   nameRec: openFileName;
-Begin
-   fillChar(nameRec,sizeOf(NameRec),0);
-   fName[0] := #0;
-   with nameRec do
-      begin
-         LStructSize := sizeOf(nameRec);
-         HWndOwner := hWindow;
-         LpStrFilter := filter;
-         LpStrFile := @FName;
-         NMaxFile := Max_Path;
-         Flags := OFN_Explorer Or OFN_HideReadOnly;
-         if open then
-            begin
-               Flags := Flags Or OFN_FileMustExist;
-            end;
-         LpStrDefExt := ext;
-      end;
-   if open then
-      selectFile := getOpenFileName(@nameRec)
-   else
-      selectFile := getSaveFileName(@nameRec);
+  with OpenFileName do
+  begin
+      lStructSize := SizeOf(TOpenFileName);
+      hwndOwner := GetActiveWindow;
+      lpstrFile := fileName;
+      nMaxFile := MAX_PATH;
+      lpstrFilter := 'Text Files (*.txt)|*.txt|All Files (*.*)|*.*';
+      nFilterIndex := 1;
+      Flags := OFN_FILEMUSTEXIST;
+  end;
+  selectFile := GetOpenFileName(@OpenFileName);
 end;
-
+   
 
 procedure loadFile;
 var
    fname : tFileName;
    emptyTest : string;
 begin
-   if selectFile(fname, True) then
+   if selectFile(fname) then
       assign(inputText, @fName)
    else
       begin
