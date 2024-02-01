@@ -33,7 +33,7 @@ begin
       hwndOwner := GetActiveWindow;
       lpstrFile := fileName;
       nMaxFile := MAX_PATH;
-      lpstrFilter := 'Text Files (*.txt)|*.txt|All Files (*.*)|*.*';
+      lpstrFilter := 'Text files (*.txt)'#0'*.txt'#0'All files (*.*)'#0'*.*'#0;
       nFilterIndex := 1;
       Flags := OFN_FILEMUSTEXIST;
   end;
